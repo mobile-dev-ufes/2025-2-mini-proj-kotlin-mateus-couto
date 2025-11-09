@@ -373,7 +373,8 @@ fun main(args: Array<String>) {
     val saida   = Path.of(args[1])
 
     require(Files.exists(entrada)) { "Nao encontrada a pasta de entrada" }
-    if (!Files.exists(saida)) Files.createDirectory(saida)
+    if (Files.notExists(saida)) {
+        Files.createDirectories(saida)}
 
     val compras = leCsvCompra(caminhoCompra(entrada).toFile())
     val vendas  = lerVendas(caminhoVendas(entrada).toFile())
